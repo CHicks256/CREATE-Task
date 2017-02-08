@@ -69,7 +69,7 @@ void pre_auton()
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-task autonomous()   		// TURN LEFT DAMNIT
+task autonomous()
 {
 clearTimer(T1);
 while(time1[T1] < 1000)
