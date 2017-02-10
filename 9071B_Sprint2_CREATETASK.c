@@ -91,7 +91,7 @@ task autonomous()
 	motor[port4] = 50;
 	motor[port5] = 50;
 	wait(.75);
-motor[PillarBottomL] = 100;
+	motor[PillarBottomL] = 100;
 	motor[PillarBottomR] = 100;
 	motor[PillarTopR] = 100;
 	motor[PillarTopL] = 100;
@@ -105,6 +105,28 @@ motor[PillarBottomL] = 100;
 	}
 	else
 	{
+		motor[port2] = 100
+		motor[port3] = 100
+		motor[port4] = 100
+		motor[port5] = 100
+		wait(.50);
+
+		motor[PincerL] = -100
+		motor[PincerR] = -100
+		wait(.50);
+
+		motor[port2] = -100
+		motor[port3] = -100
+		motor[port4] = -100
+		motor[port5] = -100
+		wait(.75);
+
+		motor[port2] = 0
+		motor[port3] = 0
+		motor[port4] = 0
+		motor[port5] = 0
+	}
+
 }
 
 /*---------------------------------------------------------------------------*/
