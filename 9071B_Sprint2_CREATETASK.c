@@ -71,32 +71,31 @@ void pre_auton()
 
 task autonomous()
 {
-	clearTimer(T1);
+	clearTimer(T1);                //Clears the timer
 	while(time1[T1] < 1000)
 	{
-		motor[port2] = 100;
+		motor[port2] = 100;      //Straight for 1 second
 		motor[port3] = 100;
 		motor[port4] = 100;
 		motor[port5] = 100;
 	}
-	motor[port2] = 0;
+	motor[port2] = 0;        //Stop going straight
 	motor[port3] = 0;
 	motor[port4] = 0;
 	motor[port5] = 0;
-	motor[PincerL] = 100;
+	motor[PincerL] = 100;   //Closes pincers to grab object
 	motor[PincerR] = 100;
 	wait(2);
-	motor[port2] = -50;
+	motor[port2] = -50;     //Turns left
 	motor[port3] = -50;
 	motor[port4] = 50;
 	motor[port5] = 50;
 	wait(.75);
-motor[PillarBottomL] = 100;
-	motor[PillarBottomR] = 100;
-	motor[PillarTopR] = 100;
-	motor[PillarTopL] = 100;
-	//untilPotentiometerLessThan(985, in5);
-	if(SensorValue[in5] < 985)
+	motor[PillarBottomL] = PillD;     //Raises the 6-bar
+	motor[PillarBottomR] = PillD;
+	motor[PillarTopR] = PillD;
+	motor[PillarTopL] = PillD;
+	if(SensorValue[in5] < 985)   //Keeps the 6-bar at a certain height
 	{
 		motor[PillarBottomL] = 0;
 		motor[PillarBottomR] = 0;
@@ -105,6 +104,15 @@ motor[PillarBottomL] = 100;
 	}
 	else
 	{
+		motor[port2] = 100;   //Drive straight
+		motor[port3] = 100;
+		motor[port4] = 100;
+		motor[port5] = 100;
+		wait(1);
+		motor[PincerL] = -100;  //Release pincers with object
+		motor[PincerR] = -100;
+		wait(2);
+	}
 }
 
 /*---------------------------------------------------------------------------*/
@@ -134,17 +142,17 @@ task usercontrol()
 		//Scoop up/down movement code
 		if(vexRT[Btn5U] == 1)
 		{
-			motor[PillarBottomL] = PillT;
-			motor[PillarBottomR] = PillT;
-			motor[PillarTopL] = PillT;
-			motor[PillarTopR]= PillT;
-		}
-		else if (vexRT[Btn5D] == 1)
-		{
 			motor[PillarBottomL] = PillD;
 			motor[PillarBottomR] = PillD;
 			motor[PillarTopL] = PillD;
 			motor[PillarTopR]= PillD;
+		}
+		else if (vexRT[Btn5D] == 1)
+		{
+			motor[PillarBottomL] = PillT;
+			motor[PillarBottomR] = PillT;
+			motor[PillarTopL] = PillT;
+			motor[PillarTopR]= PillT;
 		}
 		else
 		{
