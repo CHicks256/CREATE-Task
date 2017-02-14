@@ -23,13 +23,13 @@
 /*        Description: Competition template for VEX EDR                      */
 /*                                                                           */
 /*---------------------------------------------------------------------------*/
+
 //Variables that are going to be used throughout program
-int PillT = 100;
-int PillD = -100;
-//int degree = 0;
-//int error = 100;
-int PinOpen = 100;
-int PinClose = -100;
+
+int PillT = 100; //Variabe used for arm raising up
+int PillD = -100; //Variable used for arm lowering down
+int PinOpen = 100;  //Variable used for Pincer opening
+int PinClose = -100; //Variable used for Pincer closing
 // This code is for the VEX cortex platform
 #pragma platform(VEX2)
 
@@ -51,12 +51,13 @@ int PinClose = -100;
 
 void pre_auton()
 {
-	//Completely clear out any previous sensor readings by setting the port to "sensorNone"
+	/*//Completely clear out any previous sensor readings by setting the port to "sensorNone"
 	SensorType[in8] = sensorNone;
 	wait1Msec(1000);
 	//Reconfigure Analog Port 8 as a Gyro sensor and allow time for ROBOTC to calibrate it
 	SensorType[in8] = gyroauto;
 	wait1Msec(2000);
+	*/
 }
 
 /*---------------------------------------------------------------------------*/
@@ -139,20 +140,20 @@ task usercontrol()
 		motor[leftrear] = vexRT[Ch3] + vexRT[Ch1] - vexRT[Ch4];
 		motor[rightrear]= vexRT[Ch3] - vexRT[Ch1] + vexRT[Ch4];
 
-		//Scoop up/down movement code
+		//Arm up/down movement code
 		if(vexRT[Btn5U] == 1)
-		{
-			motor[PillarBottomL] = PillD;
-			motor[PillarBottomR] = PillD;
-			motor[PillarTopL] = PillD;
-			motor[PillarTopR]= PillD;
-		}
-		else if (vexRT[Btn5D] == 1)
 		{
 			motor[PillarBottomL] = PillT;
 			motor[PillarBottomR] = PillT;
 			motor[PillarTopL] = PillT;
 			motor[PillarTopR]= PillT;
+		}
+		else if (vexRT[Btn5D] == 1)
+		{
+			motor[PillarBottomL] = PillD;
+			motor[PillarBottomR] = PillD;
+			motor[PillarTopL] = PillD;
+			motor[PillarTopR]= PillD;
 		}
 		else
 		{
@@ -161,6 +162,7 @@ task usercontrol()
 			motor[PillarTopL] = 0;
 			motor[PillarTopR]= 0;
 		}
+		//Pincer opening and closing control
 		if(vexRT[Btn6U] == 1)
 		{
 			motor[PincerL] = PinOpen;
