@@ -91,12 +91,12 @@ task autonomous()
 	motor[port4] = 50;
 	motor[port5] = 50;
 	wait(.75);
-	motor[PillarBottomL] = PillD;     //Raises the 6-bar
-	motor[PillarBottomR] = PillD;
-	motor[PillarTopR] = PillD;
-	motor[PillarTopL] = PillD;
+	motor[PillarBottomL] = PillT;     //Raises the 6-bar
+	motor[PillarBottomR] = PillT;
+	motor[PillarTopR] = PillT;
+	motor[PillarTopL] = PillT;
 	if(SensorValue[in5] < 985)   //Keeps the 6-bar at a certain height
-	{
+{
 		motor[PillarBottomL] = 0;
 		motor[PillarBottomR] = 0;
 		motor[PillarTopR] = 0;
